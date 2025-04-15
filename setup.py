@@ -1,0 +1,40 @@
+import re
+import os
+import setuptools
+
+ver = '1.0.0'
+
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_desc = fh.read()
+
+desc = "A DKBotzPro is a Python package that helps Many things This is Free API"
+GPL = "GNU AFFERO GENERAL PUBLIC LICENSE (v3)"
+git = "https://github.com/DKBOTZPROJECT/DKBOTZPRO"
+classify = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+]
+requirements = [
+    "requests",
+]
+
+
+setuptools.setup(
+    name="dkbotzpro",
+    version=ver,
+    author="DKBOTZ",
+    description=desc,
+    long_description=long_desc,
+    long_description_content_type="text/markdown",
+    url=git,
+    license=GPL,
+    packages=setuptools.find_packages(),
+    install_requires=requirements,
+    classifiers=classify,
+    python_requires=">=3.6",
+)
