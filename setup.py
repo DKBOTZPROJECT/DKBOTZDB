@@ -9,7 +9,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 desc = "A DKBotzPro is a Python package that helps Many things This is Free API"
 GPL = "GNU AFFERO GENERAL PUBLIC LICENSE (v3)"
-git = "https://github.com/DKBOTZPROJECT/DKBOTZPRO"
+git = "https://github.com/DKBOTZPROJECT/DKBOTZDB"
 classify = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.6",
