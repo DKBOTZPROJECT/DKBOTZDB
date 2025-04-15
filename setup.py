@@ -25,7 +25,7 @@ requirements = [
 
 
 setuptools.setup(
-    name="dkbotzpro",
+    name="dkbotzdb",
     version=ver,
     author="DKBOTZ",
     description=desc,
