@@ -2,12 +2,12 @@ import re
 import os
 import setuptools
 
-ver = '1.0.0'
+ver = '1.0.1'
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_desc = fh.read()
 
-desc = "A DKBotzPro is a Python package that helps Many things This is Free API"
+desc = "A DKBotzDB is a Python package that helps Many things This is Free API"
 GPL = "GNU AFFERO GENERAL PUBLIC LICENSE (v3)"
 git = "https://github.com/DKBOTZPROJECT/DKBOTZDB"
 classify = [
@@ -21,6 +21,7 @@ classify = [
 ]
 requirements = [
     "requests",
+    "colorlog",
 ]
 
 
