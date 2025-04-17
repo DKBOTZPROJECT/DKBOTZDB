@@ -2,7 +2,7 @@ import re
 import os
 import setuptools
 
-ver = '1.0.1'
+ver = '1.0.2'
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_desc = fh.read()
