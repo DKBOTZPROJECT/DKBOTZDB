@@ -45,47 +45,48 @@ class DkBotzDB:
             logger.info(f"Collection set to: {name}")
         return self
 
+    def make_post_request(self, url, data, max_retries=3):
+        for attempt in range(1, max_retries + 1):
+            try:
+                response = requests.post(url, json=data, timeout=10)
+                if response.status_code == 200:
+                    return response
+                else:
+                    logger.warning(f"Attempt {attempt}: Server responded with {response.status_code} - {response.text}")
+            except Exception as e:
+                logger.warning(f"Attempt {attempt}: Request failed with exception: {e}")
+            if attempt < max_retries:
+                logger.info("Retrying...")
+        logger.error(f"All {max_retries} attempts failed for URL: {url}")
+        return None
+
     def insert_one(self, data):
         if not self.token or not self.collection:
             logger.error("Token or Collection not set.")
             return None
-        try:
-            response = requests.post(
-                f"https://db.dkbotzpro.in/add.php?token={self.token}&collection={self.collection}",
-                json=data
-            )
-            if response.status_code == 200:
-                res_data = response.json()
-                if res_data.get('status'):
-                    logger.info("Records added successfully.")
-                    return res_data.get('result')
-                else:
-                    logger.warning(f"Record addition failed: {res_data.get('message')}")
+        url = f"https://db.dkbotzpro.in/add.php?token={self.token}&collection={self.collection}"
+        response = self.make_post_request(url, data)
+        if response:
+            res_data = response.json()
+            if res_data.get('status'):
+                logger.info("Records added successfully.")
+                return res_data.get('result')
             else:
-                logger.error(f"Upload failed: {response.status_code} - {response.text}")
-        except Exception as e:
-            logger.exception(f"Exception while uploading: {e}")
+                logger.warning(f"Record addition failed: {res_data.get('message')}")
         return None
 
     def find(self, query):
         if not self.token or not self.collection:
             logger.error("Token or Collection not set.")
             return None
-        try:
-            response = requests.post(
-                f"https://db.dkbotzpro.in/search.php?token={self.token}&collection={self.collection}",
-                json=query
-            )
-            if response.status_code == 200:
-                res_data = response.json()
-                if res_data.get('status') and res_data.get('count', 0) > 0:
-                    return res_data.get('results')
-                else:
-                    logger.info("No matching entry found.")
+        url = f"https://db.dkbotzpro.in/search.php?token={self.token}&collection={self.collection}"
+        response = self.make_post_request(url, query)
+        if response:
+            res_data = response.json()
+            if res_data.get('status') and res_data.get('count', 0) > 0:
+                return res_data.get('results')
             else:
-                logger.error(f"Search failed: {response.status_code} - {response.text}")
-        except Exception as e:
-            logger.exception(f"Exception while searching: {e}")
+                logger.info("No matching entry found.")
         return None
 
     def find_one(self, query):
@@ -99,86 +100,58 @@ class DkBotzDB:
         if not self.token or not self.collection:
             logger.error("Token or Collection not set.")
             return None
-        try:
-            response = requests.post(
-                f"https://db.dkbotzpro.in/update.php?token={self.token}&collection={self.collection}",
-                json={"query": query, "update": update_data}
-            )
-            if response.status_code == 200:
-                res_data = response.json()
-                if res_data.get('status'):
-                    logger.info("Data updated successfully.")
-                    return res_data.get('result')
-                else:
-                    logger.warning(f"Update failed: {res_data.get('message')}")
+        url = f"https://db.dkbotzpro.in/update.php?token={self.token}&collection={self.collection}"
+        response = self.make_post_request(url, {"query": query, "update": update_data})
+        if response:
+            res_data = response.json()
+            if res_data.get('status'):
+                logger.info("Data updated successfully.")
+                return res_data.get('result')
             else:
-                logger.error(f"Update failed: {response.status_code} - {response.text}")
-        except Exception as e:
-            logger.exception(f"Exception while updating: {e}")
+                logger.warning(f"Update failed: {res_data.get('message')}")
         return None
 
     def deletemany(self, query):
         if not self.token or not self.collection:
             logger.error("Token or Collection not set.")
             return None
-        try:
-            response = requests.post(
-                f"https://db.dkbotzpro.in/delete.php?token={self.token}&collection={self.collection}",
-                json={"query": query}
-            )
-            if response.status_code == 200:
-                res_data = response.json()
-                if res_data.get('status'):
-                    logger.info("Records deleted successfully.")
-                    return res_data.get('result')
-                else:
-                    logger.warning(f"Deletion failed: {res_data.get('message')}")
+        url = f"https://db.dkbotzpro.in/delete.php?token={self.token}&collection={self.collection}"
+        response = self.make_post_request(url, {"query": query})
+        if response:
+            res_data = response.json()
+            if res_data.get('status'):
+                logger.info("Records deleted successfully.")
+                return res_data.get('result')
             else:
-                logger.error(f"Deletion failed: {response.status_code} - {response.text}")
-        except Exception as e:
-            logger.exception(f"Exception while deleting: {e}")
+                logger.warning(f"Deletion failed: {res_data.get('message')}")
         return None
 
     def delete_one(self, query):
         if not self.token or not self.collection:
             logger.error("Token or Collection not set.")
             return None
-        try:
-            response = requests.post(
-                f"https://db.dkbotzpro.in/delete_one.php?token={self.token}&collection={self.collection}",
-                json={"query": query}
-            )
-            if response.status_code == 200:
-                res_data = response.json()
-                if res_data.get('status'):
-                    logger.info("One record deleted successfully.")
-                    return res_data.get('result')
-                else:
-                    logger.warning(f"Deletion failed: {res_data.get('message')}")
+        url = f"https://db.dkbotzpro.in/delete_one.php?token={self.token}&collection={self.collection}"
+        response = self.make_post_request(url, {"query": query})
+        if response:
+            res_data = response.json()
+            if res_data.get('status'):
+                logger.info("One record deleted successfully.")
+                return res_data.get('result')
             else:
-                logger.error(f"Deletion failed: {response.status_code} - {response.text}")
-        except Exception as e:
-            logger.exception(f"Exception while deleting one record: {e}")
+                logger.warning(f"Deletion failed: {res_data.get('message')}")
         return None
 
     def count_documents(self, query={}):
         if not self.token or not self.collection:
             logger.error("Token or Collection not set.")
             return 0
-        try:
-            response = requests.post(
-                f"https://db.dkbotzpro.in/count.php?token={self.token}&collection={self.collection}",
-                json={"query": query}
-            )
-            if response.status_code == 200:
-                res_data = response.json()
-                if res_data.get('status'):
-                    logger.info(f"Matching Documents: {res_data['count']}")
-                    return res_data['count']
-                else:
-                    logger.warning(f"Count failed: {res_data.get('message')}")
+        url = f"https://db.dkbotzpro.in/count.php?token={self.token}&collection={self.collection}"
+        response = self.make_post_request(url, {"query": query})
+        if response:
+            res_data = response.json()
+            if res_data.get('status'):
+                logger.info(f"Matching Documents: {res_data['count']}")
+                return res_data['count']
             else:
-                logger.error(f"Count failed: {response.status_code} - {response.text}")
-        except Exception as e:
-            logger.exception(f"Exception while counting documents: {e}")
+                logger.warning(f"Count failed: {res_data.get('message')}")
         return 0
