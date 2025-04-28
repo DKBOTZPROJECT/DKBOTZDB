@@ -199,9 +199,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Support
 
-For any issues, feel free to raise a GitHub issue or contact us at support@dkbotzpro.in.
+For any issues, feel free to raise a GitHub issue or contact us at dkbotzpro@gmail.com.
 
 ---
-
-**Happy coding! 🚀** 🌟
 
