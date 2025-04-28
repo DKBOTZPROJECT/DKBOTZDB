@@ -24,6 +24,7 @@
 - [Available Methods](#available-methods)
 - [Logging](#logging)
 - [Error Handling](#error-handling)
+- [How to Suggest a New Feature](#how-to-suggest-a-new-feature)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -177,6 +178,33 @@ You can change the logging level by modifying the `logger.setLevel()` in the cod
 
 ---
 
+## How to Suggest a New Feature
+
+At **DKBOTZDB**, we’re always eager to improve and enhance the database solution by adding new features that make it even more powerful and user-friendly. If you have an idea for a new feature, we'd love to hear from you! 🚀
+
+1. **Search for Existing Feature Requests**: Before submitting a new feature suggestion, please check the existing [GitHub Issues](https://github.com/DKBOTZPROJECT/DKBOTZDB/issues) to see if your idea has already been suggested. This helps us avoid duplicates and keep everything organized.
+
+2. **Create a New Issue**:
+   - If your feature hasn’t been suggested already, you can submit a **new issue**. To do this, go to our [GitHub Issues page](https://github.com/DKBOTZPROJECT/DKBOTZDB/issues), click on the **"New Issue"** button, and select **"Feature Request"**.
+   - Provide a **clear and detailed description** of the feature you'd like to suggest.
+   - Mention the **use cases** where this feature would be helpful and how it can improve the user experience.
+
+3. **Be Specific and Provide Examples**:
+   - The more details you provide, the easier it will be for us to understand and consider your suggestion.
+   - You can include code snippets, user stories, or any relevant links that will help us understand your request.
+   
+4. **Stay Engaged**: 
+   - After submitting your feature suggestion, be available to answer any questions or provide more information if necessary.
+   - If we need clarification or additional details, we’ll comment on your issue.
+
+### Example of a Good Feature Request:
+   - **Title**: "Add ability to update multiple records at once"
+   - **Description**: "Currently, the `update_one()` function is available, but it would be really helpful if we could update multiple records at once. This could be beneficial for bulk operations like updating multiple users' status at the same time."
+   - **Use Case**: "I have a situation where I need to update the status of multiple records based on certain criteria. It would save time and resources to do this in a single API call."
+
+We appreciate all suggestions and contributions from our community, and we will review each feature request carefully. Together, we can continue making **DKBOTZDB** better!
+
+You can submit your suggestions here: [GitHub Issues](https://github.com/DKBOTZPROJECT/DKBOTZDB/issues).
 
 ## Contributing
 
