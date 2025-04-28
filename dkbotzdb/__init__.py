@@ -96,6 +96,21 @@ class DkBotzDB:
             return results[0]
         return None
 
+    def smart_find(self, query, limit=None, skip=None, sort=None):
+        if not self.token or not self.collection:
+            logger.error("Token or Collection not set.")
+            return None
+        payload = {"query": query, "limit": limit, "skip": skip, "sort": sort}
+        url = f"https://db.dkbotzpro.in/search_multi.php?token={self.token}&collection={self.collection}"
+        response = self.make_post_request(url, payload)
+        if response:
+            res_data = response.json()
+            if res_data.get('status'):
+                return res_data.get('results')
+            else:
+                logger.info(f"No matching entry found.")
+        return None
+
     def update_one(self, query, update_data):
         if not self.token or not self.collection:
             logger.error("Token or Collection not set.")
