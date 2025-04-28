@@ -31,8 +31,16 @@
 ---
 
 ## Installation
+You can install DKBOTZDB using pip:
 
-You can install `DKBOTZDB` by cloning this repository and manually installing the required dependencies.
+```
+pip install dkbotzdb
+```
+
+You can also install `DKBOTZDB` by cloning this repository and manually installing the required dependencies.
+
+
+
 
 ### 1. Clone the repository:
 ```bash
