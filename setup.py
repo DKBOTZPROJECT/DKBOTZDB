@@ -2,12 +2,12 @@ import re
 import os
 import setuptools
 
-ver = '1.0.2'
+ver = '1.0.3'
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_desc = fh.read()
 
-desc = "A DKBotzDB is a Python package that helps Many things This is Free API"
+desc = "DkBotzDB Is The Most Powerful And Developer-Friendly Database Solution Powered By DKBotz And DkBotzPro, Offering Fast, Reliable, Scalable, And Secure Data Management. Designed For Effortless Integration And Built With Modern API Standards, DkBotzDB Ensures Smooth Performance Across Applications, Backed By The Trust And Excellence of dkbotzpro.in."
 GPL = "GNU AFFERO GENERAL PUBLIC LICENSE (v3)"
 git = "https://github.com/DKBOTZPROJECT/DKBOTZDB"
 classify = [
