@@ -648,4 +648,4 @@ class DKBOTZDB:
             return None
 
 DkBotzDB = DKBOTZDB
-dkbotzdb = DKBOTZDB
+DKBOTZdb = DKBOTZDB
